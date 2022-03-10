@@ -1,0 +1,89 @@
+error: this match expression is unnecessary
+  --> $DIR/needless_match.rs:15:18
+   |
+LL |       let _: i32 = match x {
+   |  __________________^
+LL | |         0 => 0,
+LL | |         1 => 1,
+LL | |         2 => 2,
+LL | |         _ => x,
+LL | |     };
+   | |_____^ help: replace it with: `x`
+   |
+   = note: `-D clippy::needless-match` implied by `-D warnings`
+
+error: this match expression is unnecessary
+  --> $DIR/needless_match.rs:24:21
+   |
+LL |       let _: Choice = match se {
+   |  _____________________^
+LL | |         Choice::A => Choice::A,
+LL | |         Choice::B => Choice::B,
+LL | |         Choice::C => Choice::C,
+LL | |         Choice::D => Choice::D,
+LL | |     };
+   | |_____^ help: replace it with: `se`
+
+error: this match expression is unnecessary
+  --> $DIR/needless_match.rs:46:26
+   |
+LL |       let _: Option<i32> = match x {
+   |  __________________________^
+LL | |         Some(a) => Some(a),
+LL | |         None => None,
+LL | |     };
+   | |_____^ help: replace it with: `x`
+
+error: this match expression is unnecessary
+  --> $DIR/needless_match.rs:62:31
+   |
+LL |       let _: Result<i32, i32> = match Ok(1) {
+   |  _______________________________^
+LL | |         Ok(a) => Ok(a),
+LL | |         Err(err) => Err(err),
+LL | |     };
+   | |_____^ help: replace it with: `Ok(1)`
+
+error: this match expression is unnecessary
+  --> $DIR/needless_match.rs:66:31
+   |
+LL |       let _: Result<i32, i32> = match func_ret_err(0_i32) {
+   |  _______________________________^
+LL | |         Err(err) => Err(err),
+LL | |         Ok(a) => Ok(a),
+LL | |     };
+   | |_____^ help: replace it with: `func_ret_err(0_i32)`
+
+error: this if-let expression is unnecessary
+  --> $DIR/needless_match.rs:73:5
+   |
+LL |     if let Some(a) = Some(1) { Some(a) } else { None }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: replace it with: `Some(1)`
+
+error: this if-let expression is unnecessary
+  --> $DIR/needless_match.rs:77:30
+   |
+LL |     let _: Result<(), i32> = if let Err(e) = x { Err(e) } else { x };
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: replace it with: `x`
+
+error: this if-let expression is unnecessary
+  --> $DIR/needless_match.rs:78:30
+   |
+LL |     let _: Result<(), i32> = if let Ok(val) = x { Ok(val) } else { x };
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: replace it with: `x`
+
+error: this if-let expression is unnecessary
+  --> $DIR/needless_match.rs:84:21
+   |
+LL |       let _: Choice = if let Choice::A = x {
+   |  _____________________^
+LL | |         Choice::A
+LL | |     } else if let Choice::B = x {
+LL | |         Choice::B
+...  |
+LL | |         x
+LL | |     };
+   | |_____^ help: replace it with: `x`
+
+error: aborting due to 9 previous errors
+
